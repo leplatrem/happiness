@@ -1,0 +1,12 @@
+export const ROUTE_UPDATED = "ROUTE_UPDATED";
+export const ROUTE_LOAD_SUCCESS = "ROUTE_LOAD_SUCCESS";
+
+export const POLL_CREATE = "POLL_CREATE";
+export const POLL_CREATED = "POLL_CREATED";
+export const POLL_INIT = "POLL_INIT";
+
+export const VOTE_SUBMIT = "VOTE_SUBMIT";
+export const VOTE_SUBMITTED = "VOTE_SUBMITTED";
+
+export const RESULTS_LOAD = "RESULTS_LOAD";
+export const RESULTS_LOADED = "RESULTS_LOADED";

@@ -1,0 +1,77 @@
+{
+  "name": "happiness",
+  "version": "0.0.1",
+  "description": "Satisfaction tracking",
+  "scripts": {
+    "dist": "NODE_ENV=production node_modules/.bin/webpack --progress --config webpack.prod.js && cp index.html css/styles.css dist/",
+    "lint": "node_modules/.bin/eslint scripts",
+    "publish-to-gh-pages": "rm -rf build && HAPPINESS_PUBLIC_PATH='/happiness/' npm run dist && cp -R dist build && gh-pages --add --dist build/",
+    "start": "node_modules/.bin/webpack-dev-server --config webpack.dev.js --port=3000 --hot"
+  },
+  "files": [
+    "dist"
+  ],
+  "engineStrict": false,
+  "engines": {
+    "npm": "^2.14.7",
+    "node": ">=4"
+  },
+  "dependencies": {
+    "atob": "^2.0.3",
+    "bootstrap": "^3.3.6",
+    "btoa": "^1.1.2",
+    "kinto-http": "^1.0.0",
+    "react": "^15.0.1",
+    "react-chartist": "^0.10.2",
+    "react-dom": "^15.0.1",
+    "react-redux": "^4.0.0",
+    "react-router": "^2.4.1",
+    "react-router-redux": "4.0.5",
+    "react-transform-catch-errors": "^1.0.0",
+    "react-transform-hmr": "^1.0.1",
+    "redux": "^3.0.4",
+    "redux-saga": "^0.10.5",
+    "uuid": "^2.0.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-core": "^6.9.1",
+    "babel-eslint": "^6.0.2",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-react-transform": "^2.0.2",
+    "babel-plugin-transform-class-properties": "^6.9.1",
+    "babel-plugin-transform-flow-strip-types": "^6.8.0",
+    "babel-plugin-transform-object-rest-spread": "^6.6.5",
+    "babel-plugin-transform-runtime": "^6.9.0",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-react": "^6.5.0",
+    "css-loader": "^0.23.1",
+    "eslint": "^2.12.0",
+    "eslint-plugin-react": "^5.2.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.8.5",
+    "gh-pages": "^0.11.0",
+    "redbox-react": "^1.2.6",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.10.5",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-hot-middleware": "^2.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leplatrem/happiness.git"
+  },
+  "keywords": [
+    "kinto",
+    "react",
+    "happiness"
+  ],
+  "author": "Mathieu Leplatre <mathieu@leplat.re>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/leplatrem/happiness/issues"
+  },
+  "homepage": "https://github.com/leplatrem/happiness#readme"
+}
