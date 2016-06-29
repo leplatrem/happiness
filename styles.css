@@ -1,0 +1,20 @@
+html, body {
+  background: darkgray;
+}
+
+button {
+  font-size: 5em;
+}
+
+
+.ct-series-b .ct-bar {
+  stroke: #f05b4f;
+}
+
+.ct-series-b .ct-bar {
+  stroke: #f4c63d;;
+}
+
+.ct-series-c .ct-bar {
+  stroke: #129E17;
+}
