@@ -7,14 +7,14 @@ button {
 }
 
 
-.ct-series-b .ct-bar {
+#charts .ct-series-a .ct-bar {
   stroke: #f05b4f;
 }
 
-.ct-series-b .ct-bar {
+#charts .ct-series-b .ct-bar {
   stroke: #f4c63d;;
 }
 
-.ct-series-c .ct-bar {
+#charts .ct-series-c .ct-bar {
   stroke: #129E17;
 }
