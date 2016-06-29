@@ -11,7 +11,7 @@ function mapStateToProps(state) {
   const byDays = {1: {}, 5: {}, 10: {}};
   records.forEach((r) => {
     const date = new Date(r.submitted);
-    const day = `${date.getMonth() + 1}-${date.getDay()}`;
+    const day = `${date.getMonth() + 1}-${date.getDate()}`;
     if (allDays.indexOf(day) < 0) {
       allDays.push(day);
     }
