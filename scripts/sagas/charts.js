@@ -12,6 +12,5 @@ export function* resultsLoad(getState, action) {
   const result = yield client.bucket(bucket)
                              .collection(collection)
                              .listRecords();
-  console.log(result);
   yield put(resultsLoaded(result.data));
 }
