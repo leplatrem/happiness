@@ -1,19 +1,24 @@
 import React, { Component } from "react";
+import { UNHAPPY, NEUTRAL, HAPPY } from "../constants";
 
 
 export default class VotePage extends Component {
   sendVote(note) {
-    this.props.submitVote(note);
+    return () => {
+      this.props.submitVote(note);
+    };
   }
 
   render() {
     const {title} = this.props;
     return (
-      <div id="send-vote">
-        <h1>{title}</h1>
-        <button onClick={this.sendVote.bind(this, 1)}>😞</button>
-        <button onClick={this.sendVote.bind(this, 5)}>😐</button>
-        <button onClick={this.sendVote.bind(this, 10)}>😊</button>
+      <div>
+        <h2 className="center-align">{title}</h2>
+        <div className="row">
+          <button className="vote unhappy col s12 m4 l4" onClick={this.sendVote(UNHAPPY)}>😞</button>
+          <button className="vote neutral col s12 m4 l4" onClick={this.sendVote(NEUTRAL)}>😐</button>
+          <button className="vote happy col s12 m4 l4" onClick={this.sendVote(HAPPY)}>😊</button>
+        </div>
       </div>
     );
   }

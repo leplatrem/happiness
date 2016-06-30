@@ -24,15 +24,21 @@ export default class HomePage extends Component {
     const {title, server, bucket} = this.state;
     return (
       <div id="homepage">
-        <h1>Happiness - Satisfaction tracking</h1>
-        <p>Simple polls to track satisfaction over time.</p>
+        <h1>Happiness</h1>
+        <p className="flow-text">Simple polls to track satisfaction over time.</p>
         <label>Title <input type="text" placeholder="How was your day?" value={title} onChange={this.onChange("title")}/></label>
-        <button type="submit" onClick={this.createPoll.bind(this)}>Create new!</button>
+
         <fieldset>
           <legend>Advanced options</legend>
           <label>Server <input type="text" value={server} onChange={this.onChange("server")}/></label>
           <label>Bucket <input type="text" value={bucket} onChange={this.onChange("bucket")}/></label>
         </fieldset>
+
+        <div className="section center-align">
+          <button onClick={this.createPoll.bind(this)} className="btn-large waves-effect waves-light">Create new
+            <i className="material-icons right">add</i>
+          </button>
+        </div>
       </div>
     );
   }

@@ -1,14 +1,23 @@
 import {
+  UNHAPPY,
+  NEUTRAL,
+  HAPPY,
+  POLL_LOADED,
   RESULTS_LOADED
 } from "../constants";
 
 
 const INITIAL_STATE = {
+  poll: {},
   records: []
 };
 
 export default function charts(state=INITIAL_STATE, action) {
   switch(action.type) {
+    case POLL_LOADED: {
+      const {poll} = action;
+      return {...state, poll};
+    }
     case RESULTS_LOADED: {
       const {records} = action;
       return {...state, records};
@@ -23,7 +32,7 @@ export function getAccumulatedVotes(state) {
   const {records} = state;
 
   const allDays = [];
-  const byDays = {1: {}, 5: {}, 10: {}};
+  const byDays = {[UNHAPPY]: {}, [NEUTRAL]: {}, [HAPPY]: {}};
   records.forEach((r) => {
     const date = new Date(r.submitted);
     const month = date.getMonth() + 1;
@@ -40,9 +49,9 @@ export function getAccumulatedVotes(state) {
   const accumulated = {
     labels: sortedDays,
     series: [
-      sortedDays.map((d) => (byDays[1][d] || 0)),
-      sortedDays.map((d) => (byDays[5][d] || 0)),
-      sortedDays.map((d) => (byDays[10][d] || 0)),
+      sortedDays.map((d) => (byDays[UNHAPPY][d] || 0)),
+      sortedDays.map((d) => (byDays[NEUTRAL][d] || 0)),
+      sortedDays.map((d) => (byDays[HAPPY][d] || 0)),
     ]
   };
   return {

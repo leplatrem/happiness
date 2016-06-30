@@ -9,17 +9,19 @@ export default class App extends Component {
     } = this.props;
     return (
       <div>
-        <div className="container-fluid main">
-          <div className="row">
-            <div className="col-sm-12 content">
-              {content || <p>Default.</p>}
+        <main className="container">
+          {content || <p>Default.</p>}
+        </main>
+        <footer className="page-footer">
+          <div className="container">
+            <Link to={`/`}>Create poll</Link>
+          </div>
+          <div className="footer-copyright">
+            <div className="container">
+            © 2016 Powered by <a className="grey-text text-lighten-3" href="https://kinto.readthedocs.io">Kinto</a>
             </div>
           </div>
-          <hr/>
-          <p className="text-center">
-            <Link to={`/`}>Create poll</Link> - <a href="https://kinto.readthedocs.io">Powered by Kinto</a>
-          </p>
-        </div>
+        </footer>
       </div>
     );
   }

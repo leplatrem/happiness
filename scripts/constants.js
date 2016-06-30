@@ -1,3 +1,7 @@
+export const UNHAPPY = 1;
+export const NEUTRAL = 5;
+export const HAPPY = 10;
+
 export const ROUTE_UPDATED = "ROUTE_UPDATED";
 export const ROUTE_LOAD_SUCCESS = "ROUTE_LOAD_SUCCESS";
 

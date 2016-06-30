@@ -16,13 +16,15 @@ import * as chartsActions from "./actions/charts";
 const common = {};
 
 
-function loadAction(store, action) {
+function loadAction(store, actions) {
   return ({params}) => {
     const {payload} = params;
     if (payload) {
       try {
         const {server, bucket, collection} = JSON.parse(atob(payload));
-        store.dispatch(action(server, bucket, collection));
+        for(let action of actions) {
+          store.dispatch(action(server, bucket, collection));
+        }
       } catch(error) {
         console.error(error);
       }
@@ -48,13 +50,13 @@ export default function getRoutes(store) {
         components={{...common, content: PollPage}} />
       <Route path="/vote(/:payload)"
         components={{...common, content: VotePage}}
-        onEnter={loadAction(store, pollActions.pollLoad)} />
+        onEnter={loadAction(store, [pollActions.pollLoad])} />
       <Route path="/charts/:payload"
         components={{...common, content: ChartsPage}}
-        onEnter={loadAction(store, chartsActions.loadResults)} />
+        onEnter={loadAction(store, [pollActions.pollLoad, chartsActions.loadResults])} />
       <Route path="/thanks"
         components={{...common, content: ThanksPage}}
-        onEnter={redirectAfter(store, 2500, "/vote")} />
+        onEnter={redirectAfter(store, 5000, "/vote")} />
       <Route path="*" components={{...common, content: _ => <h1>Page not found.</h1>}}/>
     </Route>
   );

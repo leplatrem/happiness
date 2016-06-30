@@ -7,7 +7,6 @@ import getRoutes from "./routes";
 import configureStore from "./store";
 import * as routeActions from "./actions/route";
 
-import "bootstrap/dist/css/bootstrap.css";
 import "../css/styles.css";
 
 
