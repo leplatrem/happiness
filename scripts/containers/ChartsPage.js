@@ -11,11 +11,13 @@ function mapStateToProps(state) {
   const byDays = {1: {}, 5: {}, 10: {}};
   records.forEach((r) => {
     const date = new Date(r.submitted);
-    const day = `${date.getMonth() + 1}-${date.getDate()}`;
-    if (allDays.indexOf(day) < 0) {
-      allDays.push(day);
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const key = `${month < 10 ? "0" + month : month}-${day < 10 ? "0" + day : day}`;
+    if (allDays.indexOf(key) < 0) {
+      allDays.push(key);
     }
-    byDays[r.note][day] = (byDays[r.note][day] || 0) + 1;
+    byDays[r.note][key] = (byDays[r.note][key] || 0) + 1;
   });
 
   const sortedDays = allDays.sort();

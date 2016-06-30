@@ -9,8 +9,8 @@ export function* resultsLoad(getState, action) {
   const {server, bucket, collection} = poll;
 
   const client = new KintoClient(server);
-  const result = yield client.bucket(bucket)
+  const {data} = yield client.bucket(bucket)
                              .collection(collection)
                              .listRecords();
-  yield put(resultsLoaded(result.data));
+  yield put(resultsLoaded(data));
 }

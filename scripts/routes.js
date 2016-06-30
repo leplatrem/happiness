@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, IndexRoute } from "react-router";
+import { push as updatePath } from "react-router-redux";
 import App from "./containers/App";
 import HomePage from "./containers/HomePage";
 import PollPage from "./containers/PollPage";
@@ -15,28 +16,18 @@ import * as chartsActions from "./actions/charts";
 const common = {};
 
 
-function onVoteEnter(store, {params}) {
-  const {payload} = params;
-  if (payload) {
-    try {
-      const {server, bucket, collection} = JSON.parse(atob(payload));
-      store.dispatch(pollActions.pollInit(server, bucket, collection));
-    } catch(error) {
-      console.error(error);
+function loadAction(store, action) {
+  return ({params}) => {
+    const {payload} = params;
+    if (payload) {
+      try {
+        const {server, bucket, collection} = JSON.parse(atob(payload));
+        store.dispatch(action(server, bucket, collection));
+      } catch(error) {
+        console.error(error);
+      }
     }
-  }
-}
-
-function onChartsEnter(store, {params}) {
-  const {payload} = params;
-  if (payload) {
-    try {
-      const {server, bucket, collection} = JSON.parse(atob(payload));
-      store.dispatch(chartsActions.loadResults(server, bucket, collection));
-    } catch(error) {
-      console.error(error);
-    }
-  }
+  };
 }
 
 
@@ -48,10 +39,10 @@ export default function getRoutes(store) {
         components={{...common, content: PollPage}} />
       <Route path="/vote/:payload"
         components={{...common, content: VotePage}}
-        onEnter={onVoteEnter.bind(null, store)} />
+        onEnter={loadAction(store, pollActions.pollInit)} />
       <Route path="/charts/:payload"
         components={{...common, content: ChartsPage}}
-        onEnter={onChartsEnter.bind(null, store)} />
+        onEnter={loadAction(store, chartsActions.loadResults)} />
       <Route path="/thanks"
         components={{...common, content: ThanksPage}} />
       <Route path="*" components={{...common, content: _ => <h1>Page not found.</h1>}}/>

@@ -12,8 +12,10 @@ export default class HomePage extends Component {
     this.props.createPoll(this.state.server, this.state.bucket);
   }
 
-  onChange(field, event) {
-    this.setState({[field]: event.target.value});
+  onChange = (name) => {
+    return (event) => {
+      this.setState({[name]: event.target.value});
+    };
   }
 
   render() {
@@ -24,8 +26,8 @@ export default class HomePage extends Component {
         <button type="submit" onClick={this.createPoll.bind(this)}>Create new!</button>
         <fieldset>
           <legend>Advanced options</legend>
-          <label>Server <input type="text" value={this.state.server} onChange={this.onChange.bind(this, "server")}/></label>
-          <label>Bucket <input type="text" value={this.state.bucket} onChange={this.onChange.bind(this, "bucket")}/></label>
+          <label>Server <input type="text" value={this.state.server} onChange={this.onChange("server")}/></label>
+          <label>Bucket <input type="text" value={this.state.bucket} onChange={this.onChange("bucket")}/></label>
         </fieldset>
       </div>
     );

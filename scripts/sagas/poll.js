@@ -13,8 +13,8 @@ function* createBucket(client, bucket) {
     const headers = {Authorization: "Basic " + btoa(`token:${Math.random()}`)};
     yield client.createBucket(bucket, {headers, permissions, safe: true});
   } catch(e) {
-    // Ignore error if it already exists.
-    if (!/HTTP 4??/.test(e.message)) {
+    // Ignore error if it already exists (created by someone else).
+    if (!/HTTP 403/.test(e.message)) {
       throw e;
     }
   }
