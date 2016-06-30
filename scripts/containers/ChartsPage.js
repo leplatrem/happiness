@@ -2,38 +2,14 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import ChartsPage from "../components/ChartsPage";
+import { getAccumulatedVotes } from "../reducers";
 
 
 function mapStateToProps(state) {
-  const records = state.charts.records || [];
-
-  const allDays = [];
-  const byDays = {1: {}, 5: {}, 10: {}};
-  records.forEach((r) => {
-    const date = new Date(r.submitted);
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    const key = `${month < 10 ? "0" + month : month}-${day < 10 ? "0" + day : day}`;
-    if (allDays.indexOf(key) < 0) {
-      allDays.push(key);
-    }
-    byDays[r.note][key] = (byDays[r.note][key] || 0) + 1;
-  });
-
-  const sortedDays = allDays.sort();
-
-  const accumulated = {
-    labels: sortedDays,
-    series: [
-      sortedDays.map((d) => (byDays[1][d] || 0)),
-      sortedDays.map((d) => (byDays[5][d] || 0)),
-      sortedDays.map((d) => (byDays[10][d] || 0)),
-    ]
-  };
-
+  const { total, chartsData } = getAccumulatedVotes(state);
   return {
-    nbVotes: records.length,
-    chartsData: accumulated
+    total,
+    chartsData
   };
 }
 

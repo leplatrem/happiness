@@ -5,11 +5,13 @@ import ChartistGraph from "react-chartist";
 
 export default class ChartsPage extends Component {
   render() {
+    const {total, chartsData} = this.props;
+    const chartOptions = {stackBars: true};
     return (
       <div id="charts">
         <h1>Charts</h1>
-        <p>{this.props.nbVotes} votes</p>
-        <ChartistGraph data={this.props.chartsData} type={'Bar'} options={{stackBars: true}} />
+        <p>{total} votes</p>
+        <ChartistGraph data={chartsData} type={'Bar'} options={chartOptions} />
       </div>
     );
   }

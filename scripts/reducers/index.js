@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import { routerReducer } from "react-router-redux";
 
 import poll from "./poll";
-import charts from "./charts";
+import charts, * as fromCharts from "./charts";
 
 
 const rootReducer = combineReducers({
@@ -12,3 +12,7 @@ const rootReducer = combineReducers({
 });
 
 export default rootReducer;
+
+export function getAccumulatedVotes(state) {
+  return fromCharts.getAccumulatedVotes(state.charts);
+}
