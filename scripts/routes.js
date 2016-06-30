@@ -48,7 +48,7 @@ export default function getRoutes(store) {
         components={{...common, content: PollPage}} />
       <Route path="/vote(/:payload)"
         components={{...common, content: VotePage}}
-        onEnter={loadAction(store, pollActions.pollInit)} />
+        onEnter={loadAction(store, pollActions.pollLoad)} />
       <Route path="/charts/:payload"
         components={{...common, content: ChartsPage}}
         onEnter={loadAction(store, chartsActions.loadResults)} />

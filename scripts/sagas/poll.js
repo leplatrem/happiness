@@ -3,7 +3,7 @@ import { put } from "redux-saga/effects";
 import btoa from "btoa";
 import KintoClient from "kinto-http";
 
-import { pollCreated } from "../actions/poll";
+import { pollCreated, pollLoaded } from "../actions/poll";
 
 
 function* createBucket(client, bucket) {
@@ -20,19 +20,30 @@ function* createBucket(client, bucket) {
   }
 }
 
+
 export function* pollCreate(getState, action) {
   const {info} = action;
-  const {server, bucket} = info;
+  const {title, server, bucket} = info;
   const client = new KintoClient(server);
 
   yield createBucket(client, bucket);
 
+  const data = {title};
   const permissions = {"read": ["system.Everyone"], "record:create": ["system.Everyone"]};
   const result = yield client.bucket(bucket)
-                             .createCollection(undefined, {permissions});
+                             .createCollection(undefined, {data, permissions});
   const collection = result.data.id;
-  yield put(pollCreated(server, bucket, collection));
+  yield put(pollCreated(title, server, bucket, collection));
   yield put(updatePath("/poll"));
+}
+
+
+export function* pollLoad(getState, action) {
+  const {info} = action;
+  const {server, bucket, collection} = info;
+  const client = new KintoClient(server);
+  const {title} = yield client.bucket(bucket).collection(collection).getData();
+  yield put(pollLoaded(title, server, bucket, collection));
 }
 
 

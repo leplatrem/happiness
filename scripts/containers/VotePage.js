@@ -6,7 +6,9 @@ import * as PollActions from "../actions/poll";
 
 
 function mapStateToProps(state) {
-  return {};
+  const {poll={}} = state.poll;
+  const {title=""} = poll;
+  return {title};
 }
 
 function mapDispatchToProps(dispatch) {
