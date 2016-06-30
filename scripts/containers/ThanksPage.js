@@ -5,7 +5,18 @@ import ThanksPage from "../components/ThanksPage";
 
 
 function mapStateToProps(state) {
-  return {};
+  const langs = [
+    "Merci",
+    "Thank you",
+    "Gracias",
+    "Xièxiè",
+    "Shukran",
+    "Danke",
+    "Grazie",
+    "Dank u",
+    "Gràcies"
+  ];
+  return {langs};
 }
 
 function mapDispatchToProps(dispatch) {

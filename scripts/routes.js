@@ -31,20 +31,30 @@ function loadAction(store, action) {
 }
 
 
+function redirectAfter(store, timeout, destination) {
+  return () => {
+    setTimeout(() => {
+      store.dispatch(updatePath(destination));
+    }, timeout);
+  };
+}
+
+
 export default function getRoutes(store) {
   return (
     <Route path="/" component={App}>
       <IndexRoute components={{...common, content: HomePage}} />
       <Route path="/poll"
         components={{...common, content: PollPage}} />
-      <Route path="/vote/:payload"
+      <Route path="/vote(/:payload)"
         components={{...common, content: VotePage}}
         onEnter={loadAction(store, pollActions.pollInit)} />
       <Route path="/charts/:payload"
         components={{...common, content: ChartsPage}}
         onEnter={loadAction(store, chartsActions.loadResults)} />
       <Route path="/thanks"
-        components={{...common, content: ThanksPage}} />
+        components={{...common, content: ThanksPage}}
+        onEnter={redirectAfter(store, 2500, "/vote")} />
       <Route path="*" components={{...common, content: _ => <h1>Page not found.</h1>}}/>
     </Route>
   );
