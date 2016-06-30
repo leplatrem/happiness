@@ -1,13 +1,25 @@
-html, body {
-  background: darkgray;
+button.vote {
+  border: none;
+  background: inherit;
+  height: 30vh;
+
+  background-repeat: no-repeat;
+  background-position-x: 50%;
+  color: transparent;
 }
 
-button {
-  font-size: 5em;
+button.vote.unhappy {
+  background-image: url("./1f61e.svg");
+}
+button.vote.neutral {
+  background-image: url("./1f610.svg");
+}
+button.vote.happy {
+  background-image: url("./1f603.svg");
 }
 
 #thanks span {
-  margin-right: 2em;
+  margin-right: 1em;
 }
 
 #charts .ct-series-a .ct-bar {
