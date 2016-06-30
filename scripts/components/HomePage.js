@@ -4,8 +4,9 @@ import React, { Component } from "react";
 export default class HomePage extends Component {
   constructor(props) {
     super(props);
-    const {server, bucket} = this.props;
-    this.state = {server, bucket};
+    const {title, server, bucket} = this.props;
+    // This will store the temporary values of the form.
+    this.state = {title, server, bucket};
   }
 
   createPoll() {

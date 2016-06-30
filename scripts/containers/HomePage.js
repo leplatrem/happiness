@@ -6,10 +6,7 @@ import * as PollActions from "../actions/poll";
 
 
 function mapStateToProps(state) {
-  return {
-    server: "https://leplatrem-happiness.herokuapp.com/v1",
-    bucket: "happiness"
-  };
+  return state.homepage;
 }
 
 function mapDispatchToProps(dispatch) {
