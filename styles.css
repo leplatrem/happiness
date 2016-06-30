@@ -6,6 +6,9 @@ button {
   font-size: 5em;
 }
 
+#thanks span {
+  margin-right: 2em;
+}
 
 #charts .ct-series-a .ct-bar {
   stroke: #f05b4f;
