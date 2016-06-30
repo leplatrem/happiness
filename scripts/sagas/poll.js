@@ -3,7 +3,7 @@ import { put } from "redux-saga/effects";
 import btoa from "btoa";
 import KintoClient from "kinto-http";
 
-import { voteSubmitted, pollCreated } from "../actions/poll";
+import { pollCreated } from "../actions/poll";
 
 
 function* createBucket(client, bucket) {
@@ -46,6 +46,5 @@ export function* voteSubmit(getState, action) {
   yield client.bucket(bucket)
               .collection(collection)
               .createRecord(record);
-  yield put(voteSubmitted(note));
   yield put(updatePath("/thanks"));
 }

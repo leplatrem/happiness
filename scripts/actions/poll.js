@@ -2,8 +2,7 @@ import {
   POLL_CREATE,
   POLL_CREATED,
   POLL_INIT,
-  VOTE_SUBMIT,
-  VOTE_SUBMITTED
+  VOTE_SUBMIT
 } from "../constants";
 
 
@@ -21,8 +20,4 @@ export function pollInit(server, bucket, collection) {
 
 export function submitVote(note) {
   return {type: VOTE_SUBMIT, note};
-}
-
-export function voteSubmitted(note) {
-  return {type: VOTE_SUBMITTED, note};
 }

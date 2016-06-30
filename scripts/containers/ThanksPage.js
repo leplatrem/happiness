@@ -5,9 +5,7 @@ import ThanksPage from "../components/ThanksPage";
 
 
 function mapStateToProps(state) {
-  return {
-    note: state.poll.note
-  };
+  return {};
 }
 
 function mapDispatchToProps(dispatch) {

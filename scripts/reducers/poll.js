@@ -1,7 +1,6 @@
 import {
   POLL_CREATED,
-  POLL_INIT,
-  VOTE_SUBMITTED,
+  POLL_INIT
 } from "../constants";
 
 
@@ -17,10 +16,6 @@ export default function poll(state=INITIAL_STATE, action) {
     case POLL_INIT: {
       const {poll} = action;
       return {...state, poll};
-    }
-    case VOTE_SUBMITTED: {
-      const {note} = action;
-      return {...state, note};
     }
     default: {
       return state;
