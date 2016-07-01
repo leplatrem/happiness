@@ -1,3 +1,37 @@
+/*
+ * Loading bar (source: http://codepen.io/brunjo/pen/XJmbNz)
+ */
+.loader {
+  height: 4px;
+  width: 100%;
+  left: 0px;
+  top: 0px;
+  position: fixed;
+  overflow: hidden;
+  background-color: #ddd;
+  z-index: 999;
+}
+
+.loader:before {
+  display: block;
+  position: absolute;
+  content: "";
+  left: -200px;
+  width: 200px;
+  height: 4px;
+  background-color: #2980b9;
+  animation: loading 2s linear infinite;
+}
+@keyframes loading {
+    from {left: -200px; width: 30%;}
+    50% {width: 30%;}
+    70% {width: 70%;}
+    80% { left: 50%;}
+    95% {left: 120%;}
+    to {left: 100%;}
+}
+
+
 button.vote {
   border: none;
   background: inherit;
@@ -18,9 +52,11 @@ button.vote.happy {
   background-image: url("./1f603.svg");
 }
 
+
 #thanks span {
   margin-right: 1em;
 }
+
 
 #charts .ct-series-a .ct-bar {
   stroke: #f05b4f;
