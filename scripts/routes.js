@@ -13,9 +13,6 @@ import * as pollActions from "./actions/poll";
 import * as chartsActions from "./actions/charts";
 
 
-const common = {};
-
-
 function loadAction(store, actions) {
   return ({params}) => {
     const {payload} = params;
@@ -45,19 +42,19 @@ function redirectAfter(store, timeout, destination) {
 export default function getRoutes(store) {
   return (
     <Route path="/" component={App}>
-      <IndexRoute components={{...common, content: HomePage}} />
+      <IndexRoute components={{content: HomePage}} />
       <Route path="/poll"
-        components={{...common, content: PollPage}} />
+        components={{content: PollPage}} />
       <Route path="/vote(/:payload)"
-        components={{...common, content: VotePage}}
+        components={{content: VotePage}}
         onEnter={loadAction(store, [pollActions.pollLoad])} />
       <Route path="/charts/:payload"
-        components={{...common, content: ChartsPage}}
+        components={{content: ChartsPage}}
         onEnter={loadAction(store, [pollActions.pollLoad, chartsActions.loadResults])} />
       <Route path="/thanks"
-        components={{...common, content: ThanksPage}}
+        components={{content: ThanksPage}}
         onEnter={redirectAfter(store, 5000, "/vote")} />
-      <Route path="*" components={{...common, content: _ => <h1>Page not found.</h1>}}/>
+      <Route path="*" components={{content: _ => <h1>Page not found.</h1>}}/>
     </Route>
   );
 }

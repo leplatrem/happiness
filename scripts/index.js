@@ -5,7 +5,6 @@ import { Router, hashHistory } from "react-router";
 import { syncHistoryWithStore } from "react-router-redux";
 import getRoutes from "./routes";
 import configureStore from "./store";
-import * as routeActions from "./actions/route";
 
 import "../css/styles.css";
 
@@ -14,14 +13,9 @@ const store = configureStore();
 
 syncHistoryWithStore(hashHistory, store);
 
-function onRouteUpdate() {
-  const {params, location} = this.state;
-  store.dispatch(routeActions.routeUpdated(params, location));
-}
-
 render((
   <Provider store={store}>
-    <Router history={hashHistory} onUpdate={onRouteUpdate}>
+    <Router history={hashHistory}>
       {getRoutes(store)}
     </Router>
   </Provider>

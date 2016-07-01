@@ -2,9 +2,6 @@ export const UNHAPPY = 1;
 export const NEUTRAL = 5;
 export const HAPPY = 10;
 
-export const ROUTE_UPDATED = "ROUTE_UPDATED";
-export const ROUTE_LOAD_SUCCESS = "ROUTE_LOAD_SUCCESS";
-
 export const POLL_CREATE = "POLL_CREATE";
 export const POLL_CREATED = "POLL_CREATED";
 export const POLL_LOAD = "POLL_LOAD";
