@@ -6,7 +6,8 @@ import { getAccumulatedVotes } from "../reducers";
 
 
 function mapStateToProps(state) {
-  const { title="" } = state.charts;
+  const { poll } = state.charts;
+  const { title } = poll;
   const { total, chartsData } = getAccumulatedVotes(state);
   return {
     title,

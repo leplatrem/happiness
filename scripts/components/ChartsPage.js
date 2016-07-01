@@ -10,7 +10,7 @@ export default class ChartsPage extends Component {
     return (
       <div id="charts">
         <h1>Charts</h1>
-        <p>{title}</p>
+        <h3>{title}</h3>
         <p>{total} votes</p>
         <ChartistGraph data={chartsData} type={'Bar'} options={chartOptions} />
       </div>
