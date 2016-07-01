@@ -14,7 +14,7 @@ export default class App extends Component {
         </main>
         <footer className="page-footer">
           <div className="container">
-            <Link to={`/`}>Create poll</Link>
+            <h5><Link to={`/`}>Create your poll</Link></h5>
           </div>
           <div className="footer-copyright">
             <div className="container">
