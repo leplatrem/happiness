@@ -5,7 +5,7 @@ import App from "./containers/App";
 import HomePage from "./containers/HomePage";
 import PollPage from "./containers/PollPage";
 import VotePage from "./containers/VotePage";
-import ThanksPage from "./containers/ThanksPage";
+import ThanksPage from "./components/ThanksPage";
 import ChartsPage from "./containers/ChartsPage";
 import atob from "atob";
 

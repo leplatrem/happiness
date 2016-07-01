@@ -53,9 +53,19 @@ button.vote.happy {
 }
 
 
-#thanks span {
-  margin-right: 1em;
+#thanks > div {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 50%;
 }
+
+#thanks span {
+  display: inline-block;
+  margin-right: .5em;
+}
+#thanks span.size1 { font-size: 1.3rem; }
+#thanks span.size2 { font-size: 1.7rem; }
+#thanks span.size3 { font-size: 2.1rem; }
 
 
 #charts .ct-series-a .ct-bar {
