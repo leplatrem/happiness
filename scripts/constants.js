@@ -14,3 +14,6 @@ export const VOTE_SUBMIT = "VOTE_SUBMIT";
 
 export const RESULTS_LOAD = "RESULTS_LOAD";
 export const RESULTS_LOADED = "RESULTS_LOADED";
+
+export const SESSION_BUSY = "SESSION_BUSY";
+export const SESSION_ERROR = "SESSION_ERROR";

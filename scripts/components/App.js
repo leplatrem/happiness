@@ -5,10 +5,14 @@ import { Link } from "react-router";
 export default class App extends Component {
   render() {
     const {
+      busy,
+      error,
       content,
     } = this.props;
     return (
       <div>
+        {busy ? <div className="loader"></div> : ""}
+        {error ? <div className="error toast">{error.message}</div> : ""}
         <main className="container">
           {content || <p>Default.</p>}
         </main>

@@ -3,6 +3,7 @@ import { put } from "redux-saga/effects";
 import btoa from "btoa";
 import KintoClient from "kinto-http";
 
+import { sessionBusy, notifyError } from "../actions/session";
 import { pollCreated, pollLoaded } from "../actions/poll";
 
 
@@ -20,42 +21,62 @@ function* createBucket(client, bucket) {
   }
 }
 
-
-export function* pollCreate(getState, action) {
-  const {info} = action;
-  const {title, server, bucket} = info;
-  const client = new KintoClient(server);
-
-  yield createBucket(client, bucket);
-
+function* createCollection(client, bucket, title) {
   const data = {title};
   const permissions = {"read": ["system.Everyone"], "record:create": ["system.Everyone"]};
   const result = yield client.bucket(bucket)
                              .createCollection(undefined, {data, permissions});
   const collection = result.data.id;
-  yield put(pollCreated(title, server, bucket, collection));
-  yield put(updatePath("/poll"));
+  return collection;
+}
+
+
+export function* pollCreate(getState, action) {
+  const {info} = action;
+  const {title, server, bucket} = info;
+  yield put(sessionBusy(true));
+  try {
+    const client = new KintoClient(server);
+    yield createBucket(client, bucket);
+    const collection = yield createCollection(client, bucket, title);
+    yield put(pollCreated(title, server, bucket, collection));
+    yield put(updatePath("/poll"));
+  } catch (e) {
+    yield put(notifyError(e));
+  }
+  yield put(sessionBusy(false));
 }
 
 
 export function* pollLoad(getState, action) {
   const {info} = action;
   const {server, bucket, collection} = info;
-  const client = new KintoClient(server);
-  const {title} = yield client.bucket(bucket).collection(collection).getData();
-  yield put(pollLoaded(title, server, bucket, collection));
+  yield put(sessionBusy(true));
+  try {
+    const client = new KintoClient(server);
+    const {title} = yield client.bucket(bucket).collection(collection).getData();
+    yield put(pollLoaded(title, server, bucket, collection));
+  } catch(e) {
+    yield put(notifyError(e));
+  }
+  yield put(sessionBusy(false));
 }
 
 
 export function* voteSubmit(getState, action) {
   const {note} = action;
   const record = {note, submitted: new Date().toISOString()};
-
   const {poll: pollState} = getState();
   const {server, bucket, collection} = pollState.poll;
-  const client = new KintoClient(server);
-  yield client.bucket(bucket)
-              .collection(collection)
-              .createRecord(record);
-  yield put(updatePath("/thanks"));
+  yield put(sessionBusy(true));
+  try {
+    const client = new KintoClient(server);
+    yield client.bucket(bucket)
+                .collection(collection)
+                .createRecord(record);
+    yield put(updatePath("/thanks"));
+  } catch(e) {
+    yield put(notifyError(e));
+  }
+  yield put(sessionBusy(false));
 }

@@ -5,7 +5,11 @@ import App from "../components/App";
 
 
 function mapStateToProps(state) {
-  return {};
+  const {busy=false, error=null} = state.session;
+  return {
+    busy,
+    error
+  };
 }
 
 function mapDispatchToProps(dispatch) {
