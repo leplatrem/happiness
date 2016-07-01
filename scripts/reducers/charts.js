@@ -37,7 +37,7 @@ export function getAccumulatedVotes(state) {
     const date = new Date(r.submitted);
     const month = date.getMonth() + 1;
     const day = date.getDate();
-    const key = `${month < 10 ? "0" + month : month}-${day < 10 ? "0" + day : day}`;
+    const key = `${date.getFullYear()}/${month < 10 ? "0" + month : month}/${day < 10 ? "0" + day : day}`;
     if (allDays.indexOf(key) < 0) {
       allDays.push(key);
     }
@@ -47,7 +47,7 @@ export function getAccumulatedVotes(state) {
   const sortedDays = allDays.sort();
 
   const accumulated = {
-    labels: sortedDays,
+    labels: sortedDays.map((d) => d.replace(/^\d{4}\//, "")),
     series: [
       sortedDays.map((d) => (byDays[UNHAPPY][d] || 0)),
       sortedDays.map((d) => (byDays[NEUTRAL][d] || 0)),
