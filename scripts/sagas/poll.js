@@ -7,11 +7,13 @@ import { sessionBusy, notifyError } from "../actions/session";
 import { pollCreated, pollLoaded } from "../actions/poll";
 
 
+const headers = {Authorization: "Basic " + btoa(`token:${Math.random()}`)};
+
+
 function* createBucket(client, bucket) {
   try {
     // Create the bucket in case it doesn't exist.
-    const permissions = {"collection:create": ["system.Everyone"]};
-    const headers = {Authorization: "Basic " + btoa(`token:${Math.random()}`)};
+    const permissions = {"collection:create": ["system.Authenticated"]};
     yield client.createBucket(bucket, {headers, permissions, safe: true});
   } catch(e) {
     // Ignore error if it already exists (created by someone else).
@@ -25,7 +27,7 @@ function* createCollection(client, bucket, title) {
   const data = {title};
   const permissions = {"read": ["system.Everyone"], "record:create": ["system.Everyone"]};
   const result = yield client.bucket(bucket)
-                             .createCollection(undefined, {data, permissions});
+                             .createCollection(undefined, {headers, data, permissions});
   const collection = result.data.id;
   return collection;
 }
