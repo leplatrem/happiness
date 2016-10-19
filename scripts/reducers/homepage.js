@@ -1,6 +1,6 @@
 const INITIAL_STATE = {
   title: "",
-  server: "https://leplatrem-happiness.herokuapp.com/v1",
+  server: "https://kinto.notmyidea.org/v1",
   bucket: "happiness"
 };
 
