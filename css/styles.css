@@ -43,13 +43,37 @@ button.vote {
 }
 
 button.vote.unhappy {
+  animation-delay: 3s;
   background-image: url("./1f61e.svg");
 }
 button.vote.neutral {
+  animation-delay: 4s;
   background-image: url("./1f610.svg");
 }
 button.vote.happy {
+  animation-delay: 5s;
   background-image: url("./1f603.svg");
+}
+
+button.vote {
+  animation: spin 12s ease-out infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  0.5% {
+    transform: rotate(20deg);
+  }
+  1% {
+    transform: rotate(0deg);
+  }
+  1.5% {
+    transform: rotate(-20deg);
+  }
+  2% {
+    transform: rotate(0deg);
+  }
 }
 
 
