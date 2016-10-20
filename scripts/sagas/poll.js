@@ -17,7 +17,7 @@ function* createBucket(client, bucket) {
     yield client.createBucket(bucket, {headers, permissions, safe: true});
   } catch(e) {
     // Ignore error if it already exists (created by someone else).
-    if (!/HTTP 403/.test(e.message)) {
+    if (!/HTTP (403|412)/.test(e.message)) {
       throw e;
     }
   }
