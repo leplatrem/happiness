@@ -1,3 +1,13 @@
+html, body {
+  margin: 0px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+}
+
 /*
  * Loading bar (source: http://codepen.io/brunjo/pen/XJmbNz)
  */
